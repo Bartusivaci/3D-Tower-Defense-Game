@@ -6,7 +6,7 @@ public class EnemyMover : MonoBehaviour
 {
     [SerializeField] List<Waypoint> path = new List<Waypoint>();
     [SerializeField] float waitDuration = 1f;
-
+    [SerializeField] float yOffset = 5f;
 
     void Start()
     {
@@ -15,10 +15,20 @@ public class EnemyMover : MonoBehaviour
 
     IEnumerator FollowPath()
     {
-        foreach(Waypoint waypoint in path)
+        Vector3 addOffset = new Vector3(0f, yOffset, 0f);
+        foreach (Waypoint waypoint in path)
         {
-            transform.position = waypoint.transform.position;
-            yield return new WaitForSeconds(waitDuration);
+            //transform.position = waypoint.transform.position + addOffset;
+            Vector3 startPosition = transform.position;
+            Vector3 endPosition = waypoint.transform.position + addOffset;
+            float travelPercent = 0f;
+            
+            while(travelPercent < 1f)
+            {
+                travelPercent += Time.deltaTime;
+                transform.position = Vector3.Lerp(startPosition, endPosition, travelPercent);
+                yield return new WaitForEndOfFrame();
+            }
         }
     }
 }
