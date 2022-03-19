@@ -736,6 +736,8 @@ GameObject:
   - component: {fileID: 8796566905538393540}
   - component: {fileID: 8887510122435618694}
   - component: {fileID: 4802271548893960679}
+  - component: {fileID: 8718992029696530021}
+  - component: {fileID: 693882119188283096}
   m_Layer: 0
   m_Name: Goblin
   m_TagString: Untagged
@@ -799,7 +801,33 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  waitDuration: 1
+  yOffset: 5
+  speed: 0.5
+--- !u!65 &8718992029696530021
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8792868186557145364}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.43103877, y: 0.9348206, z: 0.2534897}
+  m_Center: {x: -0.011420918, y: 0.64301807, z: 0.00070875883}
+--- !u!114 &693882119188283096
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8792868186557145364}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c36b0253707ae64dbf7759a74bee289, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8792901679044689760
 GameObject:
   m_ObjectHideFlags: 0

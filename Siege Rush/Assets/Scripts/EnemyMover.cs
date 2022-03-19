@@ -6,19 +6,39 @@ public class EnemyMover : MonoBehaviour
 {
     [SerializeField] List<Waypoint> path = new List<Waypoint>();
     [SerializeField] float yOffset = 5f;
-    [SerializeField] [Range(0f, 5f)] float speed = 1f;
+    [SerializeField] [Range(0f, 5f)] float speed = 0.5f;
+
+    Vector3 addOffset;
 
     void Start()
     {
+        addOffset = new Vector3(0f, yOffset, 0f);
+        FindPath();
+        ReturnToStart();
         StartCoroutine(FollowPath());
+    }
+
+    void FindPath()
+    {
+        path.Clear();
+        
+        GameObject[] waypoints = GameObject.FindGameObjectsWithTag("Path");
+        foreach(GameObject waypoint in waypoints)
+        {
+            path.Add(waypoint.GetComponent<Waypoint>());
+        }
+    }
+
+    void ReturnToStart()
+    {
+        transform.position = path[0].transform.position + addOffset;
     }
 
     IEnumerator FollowPath()
     {
-        Vector3 addOffset = new Vector3(0f, yOffset, 0f);
         foreach (Waypoint waypoint in path)
         {
-            //transform.position = waypoint.transform.position + addOffset;
+            
             Vector3 startPosition = transform.position;
             Vector3 endPosition = waypoint.transform.position + addOffset;
             float travelPercent = 0f;
@@ -39,6 +59,8 @@ public class EnemyMover : MonoBehaviour
                 yield return new WaitForEndOfFrame();
             }
         }
+
+        Destroy(gameObject);
     }
 
 
